@@ -36,9 +36,16 @@ min_profit_month = P_L_Changes.index(min_profit) + 1
 Financial_Analysis = (f'''Financial Analysis
 ----------------------------
 Total Months: {len(Dates)}
-Total: ${sum(profit_loss):.2f}
+Total: ${sum(profit_loss)}
 Average Change: ${sum(P_L_Changes)/len(P_L_Changes):.2f}
-Greatest Increase in Profits: {max_profit_month} {max_profit:.2f}
-Greatest Decrease in Profits: {min_profit_month} {min_profit:.2f}''')
+Greatest Increase in Profits: {Dates[max_profit_month]} (${max_profit})
+Greatest Decrease in Profits: {Dates[min_profit_month]} (${min_profit})''')
 
 print(Financial_Analysis)
+
+# Create text file for print data
+text_file = open('analysis/Financial_Analysis.txt','w')
+
+text_file.write(Financial_Analysis)
+
+text_file.close()
