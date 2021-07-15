@@ -29,14 +29,27 @@ for candidate in candidate_vote_count:
         winning_count = candidate_vote_count[candidate]
         winner = candidate
 
-# Print Results
-Election_Results = (f'''Election Results
+# Print Results and save to text file
+text_file = open('analysis/Election_Results.txt','w')
+
+text_file.write(f'''
+Election Results
 -------------------------
 Total Votes: {total_votes}
--------------------------
-{candidate}: {candidate_vote_percentage[candidate]}% ({candidate_vote_count[candidate]})
--------------------------
+-------------------------\n''')
+
+for candidate, candidate_vote_count in candidate_vote_count.items():
+    text_file.write(f'{candidate}: {candidate_vote_percentage[candidate]}% ({candidate_vote_count})\n')
+
+text_file.write(f'''-------------------------
 Winner: {winner}
 -------------------------''')
 
+text_file.close()
+
+with open('analysis/Election_Results.txt','r') as results:
+    Election_Results = results.read()
+
 print(Election_Results)
+
+text_file.close()
